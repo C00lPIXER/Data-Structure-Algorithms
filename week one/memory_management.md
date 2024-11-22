@@ -1,4 +1,4 @@
-#### **memory management in JavaScript**
+### **memory management in JavaScript**
 
 ---
 
