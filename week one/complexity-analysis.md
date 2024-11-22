@@ -1094,3 +1094,12 @@ Efficient algorithms are achieved by improving:
    Example: Precomputing prefix sums for range queries.
 
 ---
+
+
+![alt text](../practice/image.png)
+
+### Legend:
+- **O(1)**: A straight, constant line.
+- **O(log n)**: A slightly upward curve, slower growth than linear.
+- **O(n)**: A straight, diagonal line.
+- **O(n²)**: A steep curve showing quadratic growth.
