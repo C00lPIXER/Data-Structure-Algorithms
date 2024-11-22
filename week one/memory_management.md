@@ -66,17 +66,6 @@
 
 ---
 
-### **6. Tools for Memory Management**
-   - **Learn:**
-     - Using browser developer tools (e.g., Chrome DevTools).
-     - Memory profiling and heap snapshots.
-   - **Practice:**
-     - Analyze memory usage of a small JavaScript application.
-   - **Key Questions:**
-     - How can I identify memory leaks using developer tools?
-
----
-
 ### **6. Advanced Topics**
    - **Learn:**
      - WeakMap and WeakSet for memory-efficient key-value storage.
