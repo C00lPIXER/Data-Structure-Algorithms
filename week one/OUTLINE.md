@@ -2354,5 +2354,4 @@ Think of a trie as a telephone directory that organizes numbers based on common 
 Data structures are integral to solving complex problems efficiently. By understanding their characteristics and applications, you can choose the right tool for the task at hand. Each data structure mirrors real-life systems, making them relatable and essential for effective programming.
 
 <!-- ---------------------------------------------------------------------------------------------------- -->
-<!-- ---------------------------------------------------------------------------------------------------- -->
 

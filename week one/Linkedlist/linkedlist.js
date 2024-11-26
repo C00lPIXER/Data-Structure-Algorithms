@@ -110,7 +110,7 @@ class LinkedList {
   reverse() {
     let prev = null;
     let current = this.head;
-    
+
     while (current) {
       const next = current.next;
       current.next = prev;
@@ -137,7 +137,7 @@ console.log(linkedList);
 // linkedList.removeAt(0);
 // console.log(linkedList);
 
-// linkedList.printList();
-// linkedList.printReverse();
+linkedList.printList();
+linkedList.printReverse();
 
 console.log(linkedList.size());

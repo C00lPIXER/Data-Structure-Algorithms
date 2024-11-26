@@ -5,7 +5,7 @@ class Node {
   }
 }
 
-class LinkedList {
+class LinkedList { 
   constructor() {
     this.head = null;
   }
@@ -54,7 +54,7 @@ const linkedList = new LinkedList();
 linkedList.addFirst(10);
 linkedList.addLast(20);
 linkedList.addLast(30);
-linkedList.addAt(3, 40);
+// linkedList.addAt(3, 40);
 console.log(linkedList);
 
 linkedList.reverse();

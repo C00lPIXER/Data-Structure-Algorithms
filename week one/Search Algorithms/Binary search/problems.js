@@ -1,4 +1,5 @@
-/** Given a sorted array of 'n' elements and a target element
+/** 
+ * Given a sorted array of 'n' elements and a target element
  * 't', find the index of 't' in the array. return -1 the target
  *  element is not found.
  */
