@@ -1,4 +1,4 @@
-/** 
+/**
  * Given a sorted array of 'n' elements and a target element
  * 't', find the index of 't' in the array. return -1 the target
  *  element is not found.
@@ -30,6 +30,8 @@ console.log("index of element", search(array, 5));
 
 // recursive way
 
-function recursiveSearch() {
+function recursiveSearch(n, t) {
   return search(n, t, 0, n.length - 1);
 }
+
+console.log(recursiveSearch([1, 2, 3, 4], 4));
