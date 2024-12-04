@@ -938,7 +938,436 @@ Here are **10 practical questions** for each sorting algorithm to help you under
 <!------------------------------------------------------------------------------------------------------------------------->
 <!------------------------------------------------------------------------------------------------------------------------->
 
+### **2. Stacks and Queues in Detail**
+
+Stacks and Queues are fundamental **linear data structures** with distinct methods of insertion and removal. Both are widely used in algorithms, applications, and system operations.
+
+---
+
+### **2.1 Stack**
+A **Stack** follows the **LIFO (Last In, First Out)** principle: the last element added is the first to be removed.  
+
+#### **Real-Life Example**
+Imagine a stack of plates:  
+- You add (PUSH) plates on top of the stack.  
+- You remove (POP) plates from the top of the stack.
+
+#### **Basic Operations**
+1. **PUSH**: Add an element to the top of the stack.  
+2. **POP**: Remove the top element from the stack.  
+3. **PEEK/Top**: View the top element without removing it.  
+4. **isEmpty**: Check if the stack is empty.
+
+#### **JavaScript Implementation**
+```javascript
+class Stack {
+    constructor() {
+        this.items = [];
+    }
+
+    push(element) {
+        this.items.push(element);
+    }
+
+    pop() {
+        if (this.isEmpty()) {
+            return "Underflow"; // No elements to remove
+        }
+        return this.items.pop();
+    }
+
+    peek() {
+        if (this.isEmpty()) {
+            return "Stack is empty";
+        }
+        return this.items[this.items.length - 1];
+    }
+
+    isEmpty() {
+        return this.items.length === 0;
+    }
+
+    display() {
+        console.log(this.items);
+    }
+}
+
+// Example usage:
+let stack = new Stack();
+stack.push(10);
+stack.push(20);
+console.log("Top element:", stack.peek());
+stack.pop();
+stack.display();
+```
+
+---
+
+### **2.2 Queue**
+A **Queue** follows the **FIFO (First In, First Out)** principle: the first element added is the first to be removed.
+
+#### **Real-Life Example**
+Think of people standing in a queue at a ticket counter:  
+- The first person (ENQUEUE) is the first to get the ticket and leave (DEQUEUE).
+
+#### **Basic Operations**
+1. **ENQUEUE**: Add an element to the end of the queue.  
+2. **DEQUEUE**: Remove an element from the front of the queue.  
+3. **isEmpty**: Check if the queue is empty.  
+4. **FRONT**: View the first element without removing it.
+
+#### **JavaScript Implementation**
+```javascript
+class Queue {
+    constructor() {
+        this.items = [];
+    }
+
+    enqueue(element) {
+        this.items.push(element);
+    }
+
+    dequeue() {
+        if (this.isEmpty()) {
+            return "Underflow"; // No elements to remove
+        }
+        return this.items.shift(); // Removes the front element
+    }
+
+    front() {
+        if (this.isEmpty()) {
+            return "Queue is empty";
+        }
+        return this.items[0];
+    }
+
+    isEmpty() {
+        return this.items.length === 0;
+    }
+
+    display() {
+        console.log(this.items);
+    }
+}
+
+// Example usage:
+let queue = new Queue();
+queue.enqueue(10);
+queue.enqueue(20);
+console.log("Front element:", queue.front());
+queue.dequeue();
+queue.display();
+```
+
+---
+
+### **Differences Between Stack and Queue**
+| Feature          | Stack                    | Queue                    |
+|-------------------|--------------------------|--------------------------|
+| Principle         | LIFO                    | FIFO                    |
+| Operations        | PUSH, POP               | ENQUEUE, DEQUEUE        |
+| Use Cases         | Undo functionality, Parsing | Process scheduling, Breadth-First Search |
+
+---
+
+### **Applications of Stack**
+1. **Undo Functionality**: Keep track of user actions to undo them in reverse order.  
+2. **Parenthesis Matching**: Check if an expression has balanced parentheses.  
+3. **Expression Evaluation**: Convert infix to postfix and evaluate postfix expressions.  
+4. **Backtracking**: Solve maze problems using stack.  
+5. **Function Call Management**: Manage recursive function calls in the program stack.
+
+---
+
+### **Applications of Queue**
+1. **Process Scheduling**: Manage tasks in operating systems.  
+2. **Breadth-First Search (BFS)**: Traverse graphs level by level.  
+3. **Print Job Management**: Queue up documents for a printer.  
+4. **Order Processing**: Handle real-time systems like ticket queues.  
+5. **Data Buffers**: Temporary storage for transferring data, e.g., keyboard buffers.
+
+---
+
+### **Practical Questions**
+#### **Stack Questions**
+1. Implement a stack to reverse a string.  
+2. Evaluate a postfix expression using a stack.  
+3. Use a stack to check if an expression has balanced parentheses.  
+4. Design a stack that supports getting the minimum element in `O(1)` time.  
+5. Implement two stacks in a single array.  
+6. Use a stack to convert infix expressions to postfix.  
+7. Solve a Tower of Hanoi problem with a stack.  
+8. Reverse a linked list using a stack.  
+9. Find the next greater element for each array element using a stack.  
+10. Check for redundant parentheses in a mathematical expression.
+
+#### **Queue Questions**
+1. Implement a circular queue using an array.  
+2. Use a queue to simulate a ticket counter.  
+3. Implement a priority queue (min-heap).  
+4. Find the first non-repeating character in a stream of characters.  
+5. Implement a queue using two stacks.  
+6. Use a queue to perform level-order traversal of a binary tree.  
+7. Simulate a real-time task scheduling system using a queue.  
+8. Reverse a queue using recursion.  
+9. Find the first negative integer in every window of size `k` in an array.  
+10. Design a data structure using a queue that supports the "stack" operations.
+
+---
+<!------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------->
+
+### **3. Hash Tables in Detail**
+
+A **Hash Table** is a data structure that maps **keys** to **values** using a hashing function. It allows for efficient **insertion**, **deletion**, and **lookup** operations, typically in **O(1)** time on average.
+
+---
+
+### **Key Concepts**
+
+1. **Hash Function**  
+   A function that converts a key into a numerical index (hash code). This index is used to store the key-value pair in the hash table.  
+   Example:  
+   - Key: `"John"`
+   - Hash Function: `sum(ascii(characters)) % tableSize`  
+   - Resulting Index: 5  
+
+2. **Collision Handling**  
+   When two keys generate the same hash code, this is called a **collision**. There are two primary ways to handle collisions:
+   - **Chaining**: Store multiple key-value pairs at the same index using a linked list or an array.  
+   - **Open Addressing**: Probe the table for the next available slot (e.g., linear probing, quadratic probing, or double hashing).
+
+3. **Load Factor**  
+   The ratio of the number of elements to the size of the table.  
+   - A higher load factor increases the likelihood of collisions.  
+   - Hash tables often resize dynamically to maintain a low load factor (e.g., below 0.7).
+
+---
+
+### **Real-Life Example**
+
+Think of a **phonebook**:
+- **Key**: Person's name  
+- **Value**: Person's phone number  
+- A hash function maps the person's name to a specific page or index in the phonebook.
+
+---
+
+### **Hash Table Operations**
+1. **Insert (Put)**: Add a key-value pair.
+2. **Retrieve (Get)**: Find the value associated with a key.
+3. **Delete**: Remove a key-value pair.
+4. **Contains**: Check if a key exists.
+
+---
+
+### **JavaScript Implementation**
+JavaScript provides **Map** and **Object** for hash table-like behavior, but we can also implement one manually.
+
+```javascript
+class HashTable {
+    constructor(size = 10) {
+        this.table = new Array(size);
+    }
+
+    hash(key) {
+        let hashValue = 0;
+        for (let char of key) {
+            hashValue += char.charCodeAt(0);
+        }
+        return hashValue % this.table.length;
+    }
+
+    put(key, value) {
+        const index = this.hash(key);
+        if (!this.table[index]) {
+            this.table[index] = [];
+        }
+        // Check if the key already exists, update value
+        for (let pair of this.table[index]) {
+            if (pair[0] === key) {
+                pair[1] = value;
+                return;
+            }
+        }
+        // If key does not exist, add it
+        this.table[index].push([key, value]);
+    }
+
+    get(key) {
+        const index = this.hash(key);
+        if (this.table[index]) {
+            for (let pair of this.table[index]) {
+                if (pair[0] === key) {
+                    return pair[1];
+                }
+            }
+        }
+        return undefined;
+    }
+
+    delete(key) {
+        const index = this.hash(key);
+        if (this.table[index]) {
+            this.table[index] = this.table[index].filter(pair => pair[0] !== key);
+        }
+    }
+
+    display() {
+        this.table.forEach((entries, index) => {
+            if (entries) {
+                console.log(`Index ${index}:`, entries);
+            }
+        });
+    }
+}
+
+// Example usage
+const hashTable = new HashTable();
+hashTable.put("John", 123);
+hashTable.put("Jane", 456);
+console.log("John's number:", hashTable.get("John"));
+hashTable.delete("John");
+hashTable.display();
+```
+
+---
+
+### **Applications of Hash Tables**
+1. **Caching**: Store precomputed data for quick access (e.g., web page caching).
+2. **Databases**: Use hash indexes for fast lookups.
+3. **Symbol Tables**: Compiler design uses hash tables for variable and function name lookups.
+4. **Counting Frequencies**: Count occurrences of elements in arrays or strings.
+5. **Unique Items**: Check for duplicates in datasets efficiently.
+
+---
+
+### **Practical Questions**
+1. **Implement a Hash Table**  
+   Write a custom hash table implementation from scratch.
+
+2. **Count Word Frequencies**  
+   Count the frequency of each word in a string using a hash table.
+
+3. **Check for Anagrams**  
+   Use a hash table to determine if two strings are anagrams.
+
+4. **Find First Non-Repeating Character**  
+   Use a hash table to find the first non-repeating character in a string.
+
+5. **Check for Duplicates in an Array**  
+   Use a hash table to determine if an array contains duplicate elements.
+
+6. **Group Elements by Frequency**  
+   Group array elements by their frequency using a hash table.
+
+7. **Implement a Phonebook**  
+   Store and retrieve contact details using a hash table.
+
+8. **Two-Sum Problem**  
+   Given an array and a target, find two numbers that add up to the target using a hash table.
+
+9. **Intersection of Two Arrays**  
+   Find the intersection of two arrays using hash tables.
+
+10. **Cache System**  
+    Implement a simple cache system using a hash table.
+
+---
 
 <!------------------------------------------------------------------------------------------------------------------------->
 <!------------------------------------------------------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------------------------->
+
+### **4. Applications of Data Structures and Algorithms**
+
+The true value of data structures and algorithms lies in their practical applications. Let’s dive into the real-world uses of sorting algorithms, stacks, queues, and hash tables, followed by actionable tasks to deepen understanding.
+
+---
+
+### **4.1 Applications of Sorting Algorithms**
+
+Sorting is fundamental in organizing data for better readability, efficiency, and accessibility.  
+#### **Practical Examples**
+1. **User Interface**: Sort search results (e.g., by relevance or date).  
+2. **E-commerce**: Sort products by price, popularity, or rating.  
+3. **Financial Systems**: Sort transactions by time, amount, or account number.  
+4. **Gaming**: Leaderboards sorted by score or ranking.  
+5. **Data Visualization**: Organize datasets for better chart plotting or analytics.
+
+#### **Competitive Coding Challenges**
+1. Sort a list of strings based on their lengths.  
+2. Sort an array containing both positive and negative numbers, with negatives first.  
+3. Find the `k`-th smallest element in an unsorted array.  
+4. Merge two sorted arrays without using extra space.  
+5. Count the number of inversions in an array using merge sort.  
+
+---
+
+### **4.2 Applications of Stacks**
+
+Stacks are ideal for scenarios where the **last action must be the first to undo** or process.  
+
+#### **Practical Examples**
+1. **Undo/Redo Functionality**: Text editors or IDEs.  
+2. **Expression Evaluation**: Convert and evaluate mathematical expressions.  
+3. **Backtracking**: Solve maze problems or puzzles (e.g., N-Queens).  
+4. **Function Call Management**: Recursive function calls are managed using a stack.  
+5. **Browser History**: Navigating back and forth between web pages.  
+
+#### **Competitive Coding Challenges**
+1. Check if an expression has balanced parentheses.  
+2. Convert an infix expression to postfix notation.  
+3. Design a stack that supports retrieving the minimum value in constant time.  
+4. Evaluate a postfix expression using stacks.  
+5. Implement a stack using two queues.  
+
+---
+
+### **4.3 Applications of Queues**
+
+Queues are essential in systems where **tasks are processed in the order of arrival**.
+
+#### **Practical Examples**
+1. **Process Scheduling**: Operating systems manage processes using queues (e.g., Round-Robin scheduling).  
+2. **Breadth-First Search (BFS)**: Traversing graphs or solving shortest path problems.  
+3. **Real-Time Systems**: Handling customer support tickets or simulations (e.g., airport check-in systems).  
+4. **Data Streams**: Monitor real-time events like stock price feeds.  
+5. **Printing Systems**: Manage a print job queue for orderly processing.  
+
+#### **Competitive Coding Challenges**
+1. Implement a circular queue.  
+2. Reverse a queue using recursion.  
+3. Design a queue to handle customer service tickets based on priority.  
+4. Use a queue to perform BFS on a binary tree.  
+5. Simulate a real-time scheduling system where tasks have deadlines.  
+
+---
+
+### **4.4 Applications of Hash Tables**
+
+Hash tables are invaluable for fast **lookups, indexing, and frequency counting**.
+
+#### **Practical Examples**
+1. **Database Indexing**: Speed up search queries with hash-based indexes.  
+2. **Web Caching**: Store precomputed results (e.g., DNS lookup caching).  
+3. **Counting Frequencies**: Analyze text data (e.g., word count in a document).  
+4. **Unique Element Storage**: Store non-repeating elements (e.g., unique email addresses).  
+5. **Implementing Sets/Maps**: Efficiently implement data structures like `Set` or `Map`.  
+
+#### **Competitive Coding Challenges**
+1. Find the first non-repeating character in a string.  
+2. Detect duplicates in an array in O(n) time.  
+3. Solve the two-sum problem using hash tables.  
+4. Group anagrams in an array of strings.  
+5. Implement a phonebook application using a hash table.  
+
+---
+
+### **Plan for Applications**
+
+To master these concepts, apply them in competitive coding challenges. Here's a step-by-step plan:
+
+1. **Select a Platform**: Use HackerRank, CodeChef, LeetCode, or AlgoExpert.  
+2. **Set Goals**: Solve at least 3 problems for each data structure or algorithm.  
+3. **Mix Difficulty Levels**: Start with easy, move to medium, and finally tackle hard problems.  
+4. **Analyze Solutions**: After solving a problem, compare your solution with others to optimize.  
