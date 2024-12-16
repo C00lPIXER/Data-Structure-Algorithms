@@ -17,16 +17,15 @@ let arr5 = ["a", "g", "f", "j", "h", "i", "d", "c", "e", "b", "k"];
  */
 
 function sort(array) {
-  for (let i = 1; i < array.length; i++) {
-    let temp = array[i];
+  for (let i = 0; i < array.length; i++) {
+    let key = array[i];
     let j = i - 1;
-    while (j >= 0 && array[j] > temp) {
+    while (j >= 0 && array[j] > key) {
       array[j + 1] = array[j];
       j--;
     }
-    array[j + 1] = temp;
+    array[j + 1] = key;
   }
-
   return array;
 }
 
@@ -44,15 +43,14 @@ console.log(sort([...arr5]));
 
 function sortStr(array) {
   for (let i = 1; i < array.length; i++) {
-    let temp = array[i];
+    const key = array[i];
     let j = i - 1;
-    while (j >= 0 && array[j] > temp) {
+    while (j >= 0 && array[j] > key) {
       array[j + 1] = array[j];
       j--;
     }
-    array[j + 1] = temp;
+    array[j + 1] = key;
   }
-
   return array;
 }
 
@@ -66,15 +64,14 @@ console.log(sortStr([...arr5]));
 
 function sortDesc(array) {
   for (let i = 1; i < array.length; i++) {
-    let temp = array[i];
+    const key = array[i];
     let j = i - 1;
-    while (j >= 0 && array[j] < temp) {
+    while (j >= 0 && array[j] < key) {
       array[j + 1] = array[j];
       j--;
     }
-    array[j + 1] = temp;
+    array[j + 1] = key;
   }
-
   return array;
 }
 
@@ -91,16 +88,15 @@ console.log(sortDesc([...arr5]));
  */
 
 function findSmall(array) {
-  for (let i = 1; i < array.length; i++) {
-    let temp = array[i];
+  for (let i = 0; i < array.length; i++) {
+    const key = array[i];
     let j = i - 1;
-    while (j >= 0 && array[j] > temp) {
+    while (j >= 0 && array[j] > key) {
       array[j + 1] = array[j];
       j--;
     }
-    array[j + 1] = temp;
+    array[j + 1] = key;
   }
-
   return array[0];
 }
 
@@ -115,17 +111,65 @@ console.log(findSmall([...arr4]));
  * _______________________________________________________________________________________________________________
  */
 
+function SortedArray(array, val) {
+  for (let i = 0; i < array.length; i++) {
+    if (val < array[i]) {
+      array.splice(i, 0, val);
+      return array;
+    }
+  }
+  array.push(val);
+  return array;
+}
+
+console.log(SortedArray([...arr3], 1));
+
 /* _______________________________________________________________________________________________________________
  * 6. Sort Partially Sorted Data
  * Sort an array where the elements are mostly sorted except for a few outliers.
  * _______________________________________________________________________________________________________________
  */
 
+function partiallySorted(array) {
+  for (let i = 0; i < array.length; i++) {
+    const key = array[i];
+    let j = i - 1;
+    while (j >= 0 && key < array[j]) {
+      array[j + 1] = array[j];
+      j--;
+    }
+    array[j + 1] = key;
+  }
+
+  return array;
+}
+
+console.log(partiallySorted([...arr1]));
+console.log(partiallySorted([...arr2]));
+console.log(partiallySorted([...arr3]));
+console.log(partiallySorted([...arr4]));
+
 /* _______________________________________________________________________________________________________________
  * 7. Reverse Order
  * Use Insertion Sort to arrange numbers in reverse order.
  * _______________________________________________________________________________________________________________
  */
+
+function reverseOrder(array) {
+  for (let i = 0; i < array.length; i++) {
+    let key = array[i];
+    let j = i - 1;
+
+    while (j >= 0 && key < array[j]) {
+      array[j + 1] = array[j];
+      j--;
+    }
+    array[j + 1] = key;
+  }
+  return array;
+}
+
+console.log(reverseOrder([...arr3]));
 
 /* _______________________________________________________________________________________________________________
  * 8. Sort a Subarray

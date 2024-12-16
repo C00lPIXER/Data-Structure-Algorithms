@@ -15,13 +15,14 @@ let arr4 = [99, 88, 77, 66, 55, 44, 33, 22, 11];
  */
 
 function sort(array) {
-  for (let i = 0; i < array.length - 1; i++) {
+  for (let i = 0; i < array.length; i++) {
     for (let j = 0; j < array.length - 1 - i; j++) {
-      if (array[j + 1] < array[j]) {
+      if (array[j] > array[j + 1]) {
         [array[j], array[j + 1]] = [array[j + 1], array[j]];
       }
     }
   }
+
   return array;
 }
 
@@ -37,15 +38,15 @@ console.log(sort([...arr4]));
  */
 
 function swapsCount(array) {
-  let conut = 0;
-  for (let i = 0; i < array.length - 1; i++) {
-    for (let j = i + 1; j < array.length - 1 - i; j++) {
-      if (array[j + 1] < array[j]) {
-        conut++;
+  let count = 0;
+  for (let i = 0; i < array.length; i++) {
+    for (let j = 0; j < array.length - i - 1; j++) {
+      if (array[j] > array[j + 1]) {
+        count++;
       }
     }
   }
-  return conut;
+  return count;
 }
 
 console.log(swapsCount([...arr1]));
@@ -61,15 +62,16 @@ console.log(swapsCount([...arr4]));
 
 function optimizer(array) {
   let count = 0;
-  for (let i = 0; i < array.length - 1; i++) {
-    let flag = 0;
-    for (let j = 0; j < array.length - 1 - i; j++) {
+  let flag = 0;
+  for (let i = 0; i < array.length; i++) {
+    for (let j = 0; j < array.length - i - 1; j++) {
       if (array[j + 1] < array[j]) {
         count++;
-        flag++;
+        flag = 1;
+        [array[j + 1], array[j]] = [array[j], array[j + 1]];
       }
     }
-    if (flag) break;
+    if (flag === 1) break;
   }
   return count;
 }
@@ -85,11 +87,39 @@ console.log(optimizer([...arr4]));
  * _______________________________________________________________________________________________________________
  */
 
+function sortStrings(array) {
+  for (let i = 0; i < array.length; i++) {
+    for (let j = 0; j < array.length - i - 1; j++) {
+      if (array[j] > array[j + 1]) {
+        [array[j], array[j + 1]] = [array[j + 1], array[j]];
+      }
+    }
+  }
+  return array;
+}
+
+console.log(sortStrings(["banana", "apple", "cherry"]));
+
 /* _______________________________________________________________________________________________________________
  * 5. Descending Order
  * Modify Bubble Sort to sort an array in descending order.
  * _______________________________________________________________________________________________________________
  */
+
+function desSort(array) {
+  for (let i = 0; i < array.length; i++) {
+    for (let j = 0; j < array.length - i - 1; j++) {
+      if (array[j] < array[j + 1])
+        [([array[j], array[j + 1]] = [array[j + 1], array[j]])];
+    }
+  }
+  return array;
+}
+
+console.log(desSort([...arr1]));
+console.log(desSort([...arr2]));
+console.log(desSort([...arr3]));
+console.log(desSort([...arr4]));
 
 /* _______________________________________________________________________________________________________________
  * 6. Sort by Length
@@ -97,11 +127,40 @@ console.log(optimizer([...arr4]));
  * _______________________________________________________________________________________________________________
  */
 
+function sortByLength(array) {
+  for (let i = 0; i < array.length; i++) {
+    for (let j = 0; j < array.length - i - 1; j++) {
+      if (array[j].length > array[j + 1].length) {
+        [array[j + 1], array[j]] = [array[j], array[j + 1]];
+      }
+    }
+  }
+  return array;
+}
+
+console.log(sortByLength(["dog", "elephant", "cat"]));
+
 /* _______________________________________________________________________________________________________________
  * 7. Largest k Elements
  * Use Bubble Sort to find the top k largest elements in an array.
  * _______________________________________________________________________________________________________________
  */
+
+function findLargest(array, k) {
+  for (let i = 0; i < k; i++) {
+    for (let j = 0; j < array.length - i - 1; j++) {
+      if (array[j] < array[j + 1]) {
+        [array[j], array[j + 1]] = [array[j + 1], array[j]];
+      }
+    }
+    return array.slice(0, k);
+  }
+}
+
+console.log(findLargest([...arr1], 5));
+console.log(findLargest([...arr2], 3));
+console.log(findLargest([...arr3], 5));
+console.log(findLargest([...arr4], 7));
 
 /* _______________________________________________________________________________________________________________
  * 8. Find the Median
