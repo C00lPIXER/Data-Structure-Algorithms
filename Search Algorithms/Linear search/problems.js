@@ -12,5 +12,3 @@ function search(n, t) {
 }
 
 console.log("index of the element", search(array, 4));
-
-/******************************************************************/
